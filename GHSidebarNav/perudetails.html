@@ -1,0 +1,157 @@
+<!DOCTYPE HTML> 
+<html>
+<head>
+    <title>Swipe 2</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/> 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/css/bootstrap.css">
+    <link href='main.css' rel='stylesheet'/>
+</head>
+<body>
+
+    <div id='mySwipe' style='max-width:500px;margin:0 auto' class='swipe'>
+        <div class='swipe-wrap'>
+            <div><img src="http://192.241.236.197/tripmomento/img/peru/peru4.png" height="200px"/></div>
+            <div><img src="http://192.241.236.197/tripmomento/img/peru/peru1.png" height="200px"/></div>
+            <div><img src="http://192.241.236.197/tripmomento/img/peru/peru2.png" height="200px"/></div>
+            <div><img src="http://192.241.236.197/tripmomento/img/peru/peru3.png" height="200px"/></div>
+        </div>
+    </div>
+
+    <div class="swipeControls">
+      <span class="leftSwipe" onclick='mySwipe.prev()'><img src="img/left-arrow.png"/></span> 
+      <span class="rightSwipe" onclick='mySwipe.next()'><img src="img/right-arrow.png"/></span>
+    </div>
+
+    <div class='container'>
+        
+        <div class="description">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+            <div class="collect"><button class="btn btn-primary">Facebook</button>&nbsp;<button class="btn btn-info">Twitter</button><button class="btn btn-warning">Collect this</button></div>
+        </div>
+
+        <hr>
+        
+        <div class="collectors">
+            <span class="pic"><img src="img/profile1.jpeg" /></span>
+            <span class="pic"><img src="img/profile2.jpeg" /></span>
+            <span class="pic"><img src="img/profile3.jpeg" /></span>
+            <span class="count">James, Amy and 36 others have collected this item.</span>
+        </div>
+        
+        <hr>
+
+        <div class="title">
+            <img src="img/star.png" />
+            <span> Merchants selling this </span>
+        </div>
+
+        <div class="stores">
+            <div class="merchant paid" data-toggle="modal" data-target="#checkout">
+                <h4> Peru hand made souvenirs </h4>
+                <span class="addrs"> #123, 2nd cross, kokamachi, Peru </span>
+                <div class="link">></div>
+                <div class="price">S/.90</div>
+            </div>
+            <div class="merchant green" data-toggle="modal" data-target="#freetrader">
+                <img src="img/fairtrade.png" class="fairtrade"/>
+                <h4> Peru hand made souvenirs </h4>
+                <span class="addrs"> #123, 2nd cross, kokamachi, Peru </span>
+                <div class="link">></div>
+                <div class="price">S/.40</div>
+            </div>
+            <div class="merchant green" data-toggle="modal" data-target="#freetrader">
+                <img src="img/fairtrade.png" class="fairtrade"/>
+                <h4> Peru hand made souvenirs </h4>
+                <span class="addrs"> #123, 2nd cross, kokamachi, Peru </span>
+                <div class="link">></div>
+                <div class="price">S/.50</div>
+            </div>
+        </div>
+        
+        <hr>
+
+        <div class="title">
+            <img src="img/star.png" />
+            <span> Comments </span>
+        </div>
+
+        <div class="comments">
+            <div class="comment">
+                <div class="profilepic"><img src="img/profile1.jpeg" /></div>
+                <div class="commenttext">This is art. My wife loved it!</div>
+            </div>
+            <div class="comment">
+                <div class="profilepic"><img src="img/profile2.jpeg" /></div>
+                <div class="commenttext">This is so beautiful. I am definately going to buy this when I visit Peru. </div>
+            </div>
+            <div class="comment">
+                <div class="profilepic"><img src="img/profile3.jpeg" /></div>
+                <div class="commenttext">I just got this delivered to my home. Its absolutely amazing.</div>
+            </div>
+
+            <div class="entercomment">
+                <input type="text"></input>
+                <button class="btn btn-warning">comment</button>
+            </div>
+        </div>
+
+        <div id="freetrader" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Merchant</h4>
+              </div>
+              <div class="modal-body">
+                <p>This merchant is freetrader. He has get directions.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success">Get Directions</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div id="checkout" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Merchant</h4>
+              </div>
+              <div class="modal-body">
+                <p>Description of the merchant. This merchant has checkout.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-warning">Checkout</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    </div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
+<script src='swipe.js'></script>
+<script>
+
+    // pure JS
+    var elem = document.getElementById('mySwipe');
+    window.mySwipe = Swipe(elem, {
+      startSlide: 0,
+      auto: 3000,
+      continuous: true,
+      disableScroll: true,
+      stopPropagation: true,
+      callback: function(index, element) {},
+      transitionEnd: function(index, element) {}
+    });
+
+    // with jQuery
+    //window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
+
+</script>
