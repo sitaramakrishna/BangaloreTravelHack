@@ -74,6 +74,7 @@
 		C98B9CD6182F5FC4004EAC3B /* searchBarIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C98B9CAC182F5FC4004EAC3B /* searchBarIcon@2x.png */; };
 		C98B9CD7182F5FC4004EAC3B /* searchTextBG.png in Resources */ = {isa = PBXBuildFile; fileRef = C98B9CAD182F5FC4004EAC3B /* searchTextBG.png */; };
 		C98B9CD8182F5FC4004EAC3B /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = C98B9CAE182F5FC4004EAC3B /* user.png */; };
+		C98B9CDA182F9F0C004EAC3B /* peru1.png in Resources */ = {isa = PBXBuildFile; fileRef = C98B9CD9182F9F0C004EAC3B /* peru1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +157,7 @@
 		C98B9CAC182F5FC4004EAC3B /* searchBarIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchBarIcon@2x.png"; sourceTree = "<group>"; };
 		C98B9CAD182F5FC4004EAC3B /* searchTextBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchTextBG.png; sourceTree = "<group>"; };
 		C98B9CAE182F5FC4004EAC3B /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		C98B9CD9182F9F0C004EAC3B /* peru1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = peru1.png; path = img/peru/peru1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +265,7 @@
 		6BE3FCCA147A115600CDEC04 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C98B9CD9182F9F0C004EAC3B /* peru1.png */,
 				C98B9C81182F5FC4004EAC3B /* assamfood.html */,
 				C98B9C82182F5FC4004EAC3B /* assamhome.html */,
 				C98B9C83182F5FC4004EAC3B /* cambodiafood.html */,
@@ -423,6 +426,7 @@
 				C98B9CAF182F5FC4004EAC3B /* assamfood.html in Resources */,
 				3FC8532E182ED37F0097E69A /* InfoWindow.xib in Resources */,
 				C98B9CB4182F5FC4004EAC3B /* ApsaraImagesOnPaperSouvenirs-2.jpg in Resources */,
+				C98B9CDA182F9F0C004EAC3B /* peru1.png in Resources */,
 				C98B9CB3182F5FC4004EAC3B /* ApsaraImagesOnPaperSouvenirs-1.jpg in Resources */,
 				C98B9CC8182F5FC4004EAC3B /* profile1.jpeg in Resources */,
 				C98B9CD1182F5FC4004EAC3B /* perufood.html in Resources */,
