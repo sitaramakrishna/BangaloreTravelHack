@@ -168,6 +168,7 @@
     }
     //[self.types insertSegmentWithImage:[UIImage imageNamed:@"icon-home.png"] atIndex:0 animated:NO];
     //[self.types insertSegmentWithImage:[UIImage imageNamed:@"icon-star.png"] atIndex:1 animated:NO];
+    [self.homepage loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"peruhome" ofType:@"html"]isDirectory:NO]]];
     if ([sidebarTitle  isEqual: @"Machu Picchu, Peru"]) {
         [self.homepage loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"peruhome" ofType:@"html"]isDirectory:NO]]];
         //[self loadFile:@"/peruhome.html"];
@@ -182,7 +183,7 @@
         
     }
     
-    self.homepage.delegate = self;
+    //self.homepage.delegate = self;
 }
 
 #pragma mark Private Methods
