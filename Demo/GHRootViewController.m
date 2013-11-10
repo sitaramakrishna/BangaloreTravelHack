@@ -25,7 +25,7 @@
 #pragma mark Memory Management
 - (id)initWithTitle:(NSString *)title withRevealBlock:(RevealBlock)revealBlock {
     if (self = [super initWithNibName:@"View" bundle:nil]) {
-		self.title = @"Peru, South Africa, Combodia";
+		self.title = title;
         sidebarTitle = title;
 		_revealBlock = [revealBlock copy];
 		self.navigationItem.leftBarButtonItem = 
@@ -129,9 +129,38 @@
     return YES;
 }
 
+- loadFile:(NSString *) fileName {
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = ([documentPaths count] > 0) ? [documentPaths objectAtIndex:0] : nil;
+    NSString *htmlPath = [documentPath stringByAppendingPathComponent:@"GHSidebarNav//"];
+    htmlPath = [htmlPath stringByAppendingString:fileName];
+    NSURL *bundleUrl = [NSURL fileURLWithPath:htmlPath];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:bundleUrl];
+    NSLog(@"help file url: %@", bundleUrl);
+	[self.homepage loadRequest:requestObj];
+}
+
 #pragma mark UIViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = ([documentPaths count] > 0) ? [documentPaths objectAtIndex:0] : nil;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSString *dataPath = [documentPath stringByAppendingPathComponent:@"GHSidebarNav"];
+    // If the expected store doesn't exist, copy the default store.
+    // If it is in production, copy only the first time.
+    // Otherwise, copy everytime the help button is clicked to allow easier testing.
+    BOOL isProduction = FALSE;
+    if (!isProduction || ![fileManager fileExistsAtPath:dataPath]) {
+        NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+        NSString *helpPath = [bundlePath stringByAppendingPathComponent:@"GHSidebarNav"];
+        if (helpPath) {
+            [fileManager copyItemAtPath:helpPath toPath:dataPath error:NULL];
+        }
+    }
+
 	self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 	self.view.backgroundColor = [UIColor whiteColor];
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
@@ -139,7 +168,20 @@
     }
     //[self.types insertSegmentWithImage:[UIImage imageNamed:@"icon-home.png"] atIndex:0 animated:NO];
     //[self.types insertSegmentWithImage:[UIImage imageNamed:@"icon-star.png"] atIndex:1 animated:NO];
-    [self.homepage loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"homepage" ofType:@"html"]isDirectory:NO]]];
+    if ([sidebarTitle  isEqual: @"Machu Picchu, Peru"]) {
+        [self.homepage loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"peruhome" ofType:@"html"]isDirectory:NO]]];
+        //[self loadFile:@"/peruhome.html"];
+        
+    }
+    else if ([sidebarTitle  isEqual: @"Siem Reap, Cambodia"]) {
+        [self.homepage loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"cambodiahome" ofType:@"html"]isDirectory:NO]]];
+        //[self loadFile:@"/cambodiahome.html"];
+    }
+    else if ([sidebarTitle  isEqual: @"Assam, India"]) {
+        [self.homepage loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"assamhome" ofType:@"html"]isDirectory:NO]]];
+        
+    }
+    
     self.homepage.delegate = self;
 }
 
@@ -154,4 +196,38 @@
 	_revealBlock();
 }
 
+- (IBAction)onTypesChange:(id)sender {
+    NSLog(@"selected: %d", self.types.selectedSegmentIndex);
+    if(self.types.selectedSegmentIndex == 0) {
+        if ([sidebarTitle  isEqual: @"Machu Picchu, Peru"]) {
+            [self.homepage loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"peruhome" ofType:@"html"]isDirectory:NO]]];
+            
+        }
+        else if ([sidebarTitle  isEqual: @"Siem Reap, Cambodia"]) {
+            [self.homepage loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"cambodiahome" ofType:@"html"]isDirectory:NO]]];
+            
+        }
+        else if ([sidebarTitle  isEqual: @"Assam, India"]) {
+            [self.homepage loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"assamhome" ofType:@"html"]isDirectory:NO]]];
+            
+        }
+        
+    }
+    else if(self.types.selectedSegmentIndex == 1) {
+        if ([sidebarTitle  isEqual: @"Machu Picchu, Peru"]) {
+            [self.homepage loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"perufood" ofType:@"html"]isDirectory:NO]]];
+            
+        }
+        else if ([sidebarTitle  isEqual: @"Siem Reap, Cambodia"]) {
+            [self.homepage loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"cambodiafood" ofType:@"html"]isDirectory:NO]]];
+            
+        }
+        else if ([sidebarTitle  isEqual: @"Assam, India"]) {
+            [self.homepage loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"assamfood" ofType:@"html"]isDirectory:NO]]];
+            
+        }
+        
+    }
+    
+}
 @end
