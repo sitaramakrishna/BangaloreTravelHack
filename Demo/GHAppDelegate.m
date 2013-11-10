@@ -53,7 +53,7 @@
 		@[
 			[[UINavigationController alloc] initWithRootViewController:[[GHRootViewController alloc] initWithTitle:@"Machu Picchu, Peru" withRevealBlock:revealBlock]],
 			[[UINavigationController alloc] initWithRootViewController:[[GHRootViewController alloc] initWithTitle:@"Siem Reap, Cambodia" withRevealBlock:revealBlock]],
-			[[UINavigationController alloc] initWithRootViewController:[[GHRootViewController alloc] initWithTitle:@"Agra, India" withRevealBlock:revealBlock]]
+			[[UINavigationController alloc] initWithRootViewController:[[GHRootViewController alloc] initWithTitle:@"Assam, India" withRevealBlock:revealBlock]]
 		]
 	];
 	NSArray *cellInfos = @[
@@ -65,7 +65,7 @@
 		@[
 			@{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Machu Picchu, Peru", @"")},
 			@{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Siem Reap, Cambodia", @"")},
-			@{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Agra, India", @"")},
+			@{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Assam, India", @"")},
 		]
 	];
 	

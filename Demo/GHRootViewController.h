@@ -15,5 +15,6 @@ typedef void (^RevealBlock)();
 - (id)initWithTitle:(NSString *)title withRevealBlock:(RevealBlock)revealBlock;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *types;
 @property (strong, nonatomic) IBOutlet UIWebView *homepage;
+- (IBAction)onTypesChange:(id)sender;
 
 @end
