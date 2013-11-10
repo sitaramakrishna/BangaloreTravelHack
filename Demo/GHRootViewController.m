@@ -25,7 +25,7 @@
 #pragma mark Memory Management
 - (id)initWithTitle:(NSString *)title withRevealBlock:(RevealBlock)revealBlock {
     if (self = [super initWithNibName:@"View" bundle:nil]) {
-		self.title = @"Peru, South Africa, Combodia";
+		self.title = @"Peru, South Africa";
         sidebarTitle = title;
 		_revealBlock = [revealBlock copy];
 		self.navigationItem.leftBarButtonItem = 
@@ -154,4 +154,7 @@
 	_revealBlock();
 }
 
+- (IBAction)onTypesChange:(id)sender {
+    
+}
 @end
