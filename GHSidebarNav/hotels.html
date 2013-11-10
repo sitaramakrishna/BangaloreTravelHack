@@ -1,0 +1,463 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Hotel Listing</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <style type="text/css">
+ h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,select,p,blockquote,th,td{margin:0;padding:0}
+body,html{
+  background-color:#cbab58; 
+  min-height:100%;
+  height:100%;
+  width:100%;
+  margin:0 auto;
+  font:13px/1.231 'robota',arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small
+}
+
+#root{
+    height:100%;
+}
+
+.hotels{
+    width:100%;
+}
+
+.hotel{
+    background-repeat:repeat-x;
+    background-attachment: fixed;
+    background-position: top center;
+    height:350px;
+    background-size: auto 100%;
+    position: relative;
+}
+
+.wrapper{
+    background: rgba(0,0,0,0.7);
+    position:absolute;
+    bottom: 0;
+    width:100%;
+    color: #fff;
+}
+
+.wrapper .margin{
+    margin:10px;
+    position: relative;
+    height:80px;
+
+}
+
+.wrapper .rating{
+    margin-top:3px;
+}
+.star {
+    background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAMAAAC67D+PAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Mzc0OEM2NEQyRDQ4MTFFMzkzRTg4NTU0Mjk1MTI1MDkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Mzc0OEM2NEUyRDQ4MTFFMzkzRTg4NTU0Mjk1MTI1MDkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozNzQ4QzY0QjJENDgxMUUzOTNFODg1NTQyOTUxMjUwOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozNzQ4QzY0QzJENDgxMUUzOTNFODg1NTQyOTUxMjUwOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PjUPPRwAAABIUExURdekANShAP/MAN2qAOC5OMeUAOzTb8CNAMubELOAANmmAP/SG//5wrmGAOfKYf/bQf//3a57AP/lb+y9FM6bAKp3AP/wnAAAAG9UjzoAAAAYdFJOU///////////////////////////////AM0TLuoAAABQSURBVHjaLIrZEoAgDAPLfQjYCsj//6mBcSdN9qG0gDG7CZe9z78qZrV1jNFKaRhy/B7Y0Qr2ATbgt8YbxApN/epIgoomEdICnXOuU58AAwBrvwaBB8i7qwAAAABJRU5ErkJggg==');
+    width:10px;
+    height:10px;
+    display: inline-block;
+}
+
+.wrapper h2{
+    font-size:16px;
+}
+.wrapper h3{
+    font-size:11px;
+}
+
+.wrapper .miles{
+    font-size:12px;
+    position: absolute;
+    bottom:3px;
+    left: 0
+}
+.wrapper .spl{
+    color:#ed8b8b;
+    display: none;
+}
+
+.wrapper .locked{
+    display: none;
+    background: linear-gradient(to bottom, rgba(121,121,121,1) 0%,rgba(99,99,99,1) 44%,rgba(67,67,67,1) 100%)!important;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(121,121,121,1)), color-stop(44%,rgba(99,99,99,1)), color-stop(100%,rgba(67,67,67,1)))
+}
+
+.wrapper.locked .spl{
+    display: block;
+}
+
+.wrapper.locked .locked{
+    display: inline-block;
+    
+}
+
+.wrapper.locked .challenge{
+    display: none;
+}
+
+.wrapper .explore{
+    width: 64px;
+    right:109px;
+    bottom:0;
+    position: absolute;
+}
+
+.wrapper .challenge,
+.wrapper .locked
+{
+    width:84px;
+    position: absolute;
+    right:0;
+    bottom:0;
+}
+
+.wrapper .button{
+    border-radius: 3px;
+    padding: 8px 10px;
+    background: linear-gradient(to bottom, rgba(172,26,26,1) 0%,rgba(159,17,17,1) 44%,rgba(123,7,7,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(172,26,26,1)), color-stop(44%,rgba(159,17,17,1)), color-stop(100%,rgba(123,7,7,1))); 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(172,26,26,1)), color-stop(44%,rgba(159,17,17,1)), color-stop(100%,rgba(123,7,7,1)))
+    border:0;
+    color:#fff;
+    text-align: center;
+    text-decoration: none;
+}
+
+.wrapper button:active{
+    opacity: 0.9;
+}
+        </style>
+    </head>
+    <body class="yui3-skin-sam">
+        <div id="root">
+        <div class="hotel" style="background-image:url('http://static.panoramio.com/photos/large/7757884.jpg')">
+            <div class="wrapper">
+                <div class="margin">
+                    <h2>The Taj Mahal Palace</h2>
+                    <h3>Financial capital of India, Mumbai</h3>
+                    <span class="rating">
+                        <span class="star"></span>
+                        <span class="star"></span>
+                        <span class="star"></span>
+                        <span class="star"></span>
+                    </span>
+                    <span class="miles">
+                        <span class="label">13000 miles</span>
+                        <span class="spl">You are 3000 miles short</span>
+                    </span>
+                    <a href="/explore.html" class="button explore"><span>Explore</span></a>
+                    <a href="/challenge.html" class="button challenge">Challenge</a>
+                    <span class="button locked">LOCKED</span>
+                </div>
+            </div>
+        </div>
+            <div class="hotels">
+                <div class="hotel" style="background-image:url('http://farm1.staticflickr.com/72/202104254_ae3c2a498a_z.jpg')">
+                    <div class="wrapper locked">
+                        <div class="margin">
+                            <h2>Taj West End Hotel</h2>
+                            <h3>Silicon valley of India, Bangalore</h3>
+                            <span class="rating">
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                            </span>
+                            <span class="miles">
+                                <span class="label">200 miles</span>
+                                <span class="spl">You are 3000 miles short</span>
+                            </span>
+                            <a href="/explore.html" class="button explore"><span>Explore</span></a>
+                            <a href="/challenge.html" class="button challenge">Challenge</a>
+                            <span class="button locked">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hotel" style="background-image:url('http://www.india-tours.com/hotels/india/chennai/five-star-deluxe/hotel-taj-coromandel-chennai.jpg')">
+                    <div class="wrapper locked">
+                        <div class="margin">
+                            <h2>Taj Coromandel Hotel</h2>
+                            <h3>Port city Chennai, India</h3>
+                            <span class="rating">
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                            </span>
+                            <span class="miles">
+                                <span class="label">13000 miles</span>
+                                <span class="spl">You are 3000 miles short</span>
+                            </span>
+                            <a href="/explore.html" class="button explore"><span>Explore</span></a>
+                            <a href="/challenge.html" class="button challenge">Challenge</a>
+                            <span class="button locked">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hotel" style="background-image:url('http://cdn.media.kiwicollection.com/media/property/PR008452/xl/008452-09-palace-exterior.jpg')">
+                    <div class="wrapper">
+                        <div class="margin">
+                            <h2>Taj Falaknuma Palace</h2>
+                            <h3>City of Nawabs, Hyderabad, India</h3>
+                            <span class="rating">
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                            </span>
+                            <span class="miles">
+                                <span class="label">13000 miles</span>
+                                <span class="spl">You are 3000 miles short</span>
+                            </span>
+                            <a href="/explore.html" class="button explore"><span>Explore</span></a>
+                            <a href="/challenge.html" class="button challenge">Challenge</a>
+                            <span class="button locked">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel" style="background-image:url('http://www.newagetours.com/Image/taj-krishna.jpg')">
+                    <div class="wrapper locked">
+                        <div class="margin">
+                            <h2>Taj Krishna</h2>
+                            <h3>City of Nawabs, Hyderabad</h3>
+                            <span class="rating">
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                            </span>
+                            <span class="miles">
+                                <span class="label">13000 miles</span>
+                                <span class="spl">You are 3000 miles short</span>
+                            </span>
+                            <a href="/explore.html" class="button explore"><span>Explore</span></a>
+                            <a href="/challenge.html" class="button challenge">Challenge</a>
+                            <span class="button locked">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel" style="background-image:url('http://www.tajhotels.com/Business/Taj%20Deccan,HYDERABAD/images/residency_hyderabad/residency_hyderabad01m.jpg')">
+                    <div class="wrapper locked">
+                        <div class="margin">
+                            <h2>Taj Deccan</h2>
+                            <h3>City of Nawabs, Hyderabad</h3>
+                            <span class="rating">
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                            </span>
+                            <span class="miles">
+                                <span class="label">13000 miles</span>
+                                <span class="spl">You are 3000 miles short</span>
+                            </span>
+                            <a href="/explore.html" class="button explore"><span>Explore</span></a>
+                            <a href="/challenge.html" class="button challenge">Challenge</a>
+                            <span class="button locked">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel" style="background-image:url('http://indialuxurytrip.files.wordpress.com/2013/09/the-oberoi-amarvilas.jpg')">
+                    <div class="wrapper locked">
+                        <div class="margin">
+                            <h2>Taj Banjara</h2>
+                            <h3>City of Nawabs, Hyderabad</h3>
+                            <span class="rating">
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                            </span>
+                            <span class="miles">
+                                <span class="label">13000 miles</span>
+                                <span class="spl">You are 3000 miles short</span>
+                            </span>
+                            <a href="/explore.html" class="button explore"><span>Explore</span></a>
+                            <a href="/challenge.html" class="button challenge">Challenge</a>
+                            <span class="button locked">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel" style="background-image:url('http://www.bookhotelsindia.com/images/rambagh5.jpg')">
+                    <div class="wrapper locked">
+                        <div class="margin">
+                            <h2>The Rambagh Palace</h2>
+                            <h3>Pink city of India, Jaipur</h3>
+                            <span class="rating">
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                            </span>
+                            <span class="miles">
+                                <span class="label">13000 miles</span>
+                                <span class="spl">You are 3000 miles short</span>
+                            </span>
+                            <a href="/explore.html" class="button explore"><span>Explore</span></a>
+                            <a href="/challenge.html" class="button challenge">Challenge</a>
+                            <span class="button locked">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel" style="background-image:url('http://farm8.staticflickr.com/7331/8891052716_8dc8c8dc25_o.jpg')">
+                    <div class="wrapper locked">
+                        <div class="margin">
+                            <h2>Umaid Bhawan Palace</h2>
+                            <h3>City of Palaces, Jodhpur</h3>
+                            <span class="rating">
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                            </span>
+                            <span class="miles">
+                                <span class="label">13000 miles</span>
+                                <span class="spl">You are 3000 miles short</span>
+                            </span>
+                            <a href="/explore.html" class="button explore"><span>Explore</span></a>
+                            <a href="/challenge.html" class="button challenge">Challenge</a>
+                            <span class="button locked">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel" style="background-image:url('http://farm5.staticflickr.com/4136/4884250283_09155b9e51.jpg')">
+                    <div class="wrapper locked">
+                        <div class="margin">
+                            <h2>Taj Bengal</h2>
+                            <h3>Royal City of the east, Kolkata</h3>
+                            <span class="rating">
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                            </span>
+                            <span class="miles">
+                                <span class="label">13000 miles</span>
+                                <span class="spl">You are 3000 miles short</span>
+                            </span>
+                            <a href="/explore.html" class="button explore"><span>Explore</span></a>
+                            <a href="/challenge.html" class="button challenge">Challenge</a>
+                            <span class="button locked">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel" style="background-image:url('http://farm6.staticflickr.com/5211/5511338827_27fefc52f2.jpg')">
+                    <div class="wrapper locked">
+                        <div class="margin">
+                            <h2>The Gateway Hotel EM Bypass</h2>
+                            <h3>Royal City of the east, Kolkata</h3>
+                            <span class="rating">
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                            </span>
+                            <span class="miles">
+                                <span class="label">13000 miles</span>
+                                <span class="spl">You are 3000 miles short</span>
+                            </span>
+                            <a href="/explore.html" class="button explore"><span>Explore</span></a>
+                            <a href="/challenge.html" class="button challenge">Challenge</a>
+                            <span class="button locked">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel" style="background-image:url('http://farm8.staticflickr.com/7250/7569706602_1ef0188f07.jpg')">
+                    <div class="wrapper locked">
+                        <div class="margin">
+                            <h2>Taj Wellington Mews</h2>
+                            <h3>Financial capital of India, Mumbai</h3>
+                            <span class="rating">
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                            </span>
+                            <span class="miles">
+                                <span class="label">13000 miles</span>
+                                <span class="spl">You are 3000 miles short</span>
+                            </span>
+                            <a href="/explore.html" class="button explore"><span>Explore</span></a>
+                            <a href="/challenge.html" class="button challenge">Challenge</a>
+                            <span class="button locked">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="hotel" style="background-image:url('http://farm3.staticflickr.com/2809/9044510424_444630554c.jpg')">
+                    <div class="wrapper locked">
+                        <div class="margin">
+                            <h2>Taj Palace Hotel</h2>
+                            <h3>Capital of India, Delhi</h3>
+                            <span class="rating">
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                            </span>
+                            <span class="miles">
+                                <span class="label">13000 miles</span>
+                                <span class="spl">You are 3000 miles short</span>
+                            </span>
+                            <a href="/explore.html" class="button explore"><span>Explore</span></a>
+                            <a href="/challenge.html" class="button challenge">Challenge</a>
+                            <span class="button locked">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel" style="background-image:url('http://farm9.staticflickr.com/8505/8386812557_578652e4bd.jpg')">
+                    <div class="wrapper locked">
+                        <div class="margin">
+                            <h2>The Taj Mahal Hotel</h2>
+                            <h3>Capital of India, Delhi</h3>
+                            <span class="rating">
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                            </span>
+                            <span class="miles">
+                                <span class="label">13000 miles</span>
+                                <span class="spl">You are 3000 miles short</span>
+                            </span>
+                            <a href="/explore.html" class="button explore"><span>Explore</span></a>
+                            <a href="/challenge.html" class="button challenge">Challenge</a>
+                            <span class="button locked">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotel" style="background-image:url('http://farm9.staticflickr.com/8354/8345522240_0a1e6b171d.jpg')">
+                    <div class="wrapper locked">
+                        <div class="margin">
+                            <h2>Taj Lake Palace</h2>
+                            <h3>Lake city of India, Udaipur</h3>
+                            <span class="rating">
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                                <span class="star"></span>
+                            </span>
+                            <span class="miles">
+                                <span class="label">13000 miles</span>
+                                <span class="spl">You are 3000 miles short</span>
+                            </span>
+                            <a href="/explore.html" class="button explore"><span>Explore</span></a>
+                            <a href="/challenge.html" class="button challenge">Challenge</a>
+                            <span class="button locked">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </body>
+</html>
