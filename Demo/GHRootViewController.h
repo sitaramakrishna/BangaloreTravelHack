@@ -7,7 +7,7 @@
 
 typedef void (^RevealBlock)();
 
-@interface GHRootViewController : UIViewController <UIWebViewDelegate> {
+@interface GHRootViewController : UIViewController {
     //GMSMapView *mapView_;
     //CLLocationManager *locationManager;
 }

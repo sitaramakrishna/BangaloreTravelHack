@@ -136,21 +136,52 @@ int imgState;
         dialogpop.layer.cornerRadius = 5;
         dialogpop.layer.masksToBounds = YES;
         
+        UILabel *AboutText = [[UILabel alloc] initWithFrame:CGRectMake(40, 5, 220, 20)];
         
-        UILabel *dialogTitle = [[UILabel alloc] initWithFrame:CGRectMake(28, 40, 220, 20)];
+        [AboutText setTextColor:[UIColor orangeColor]];
+        [AboutText setBackgroundColor:[UIColor clearColor]];
+        [AboutText setFont:[UIFont boldSystemFontOfSize:18.0f]];
+        AboutText.autoresizingMask = dialogpop.autoresizingMask;
+        AboutText.text = @"Add a new souvenir";
         
-        [dialogTitle setTextColor:[UIColor blackColor]];
-        //[dialogTitle setBackgroundColor:[UIColor clearColor]];
-        [dialogTitle setFont:[UIFont fontWithName: @"Trebuchet MS" size: 14.0f]];
         
 
+        UILabel *About = [[UILabel alloc] initWithFrame:CGRectMake(18, 240, 220, 20)];
         
-        UILabel *AboutText = [[UILabel alloc] initWithFrame:CGRectMake(16, 250, 220, 20)];
+        [About setTextColor:[UIColor orangeColor]];
+        [About setBackgroundColor:[UIColor clearColor]];
+        [About setFont:[UIFont boldSystemFontOfSize:16.0f]];
+        About.autoresizingMask = dialogpop.autoresizingMask;
+        About.text = @"About";
         
-        [AboutText setTextColor:[UIColor blackColor]];
-        //[dialogTitle setBackgroundColor:[UIColor clearColor]];
-        [AboutText setFont:[UIFont fontWithName: @"Trebuchet MS" size: 14.0f]];
-
+        
+        UILabel *AboutValue = [[UILabel alloc] initWithFrame:CGRectMake(20, 260, 220, 20)];
+        
+        [AboutValue setTextColor:[UIColor blackColor]];
+        [AboutValue setBackgroundColor:[UIColor clearColor]];
+        [AboutValue setFont:[UIFont fontWithName:@"Helvetica Neue" size:14.0f]];
+        AboutValue.autoresizingMask = dialogpop.autoresizingMask;
+        AboutValue.text = @"Famous Article Piece";
+        
+        
+        UILabel *Merchant = [[UILabel alloc] initWithFrame:CGRectMake(18, 280, 220, 20)];
+        
+        [Merchant setTextColor:[UIColor orangeColor]];
+        [Merchant setBackgroundColor:[UIColor clearColor]];
+        [Merchant setFont:[UIFont boldSystemFontOfSize:16.0f]];
+        Merchant.autoresizingMask = dialogpop.autoresizingMask;
+        Merchant.text = @"Merchant Details";
+        
+        
+        UILabel *MerchantDetails = [[UILabel alloc] initWithFrame:CGRectMake(20, 300, 220, 20)];
+        
+        [MerchantDetails setTextColor:[UIColor blackColor]];
+        [MerchantDetails setBackgroundColor:[UIColor clearColor]];
+        [MerchantDetails setFont:[UIFont fontWithName:@"Helvetica Neue" size:14.0f]];
+        MerchantDetails.autoresizingMask = dialogpop.autoresizingMask;
+        MerchantDetails.text = @"Bangalore Handlooms";
+        
+        
         
         UIButton *savebutton = [[UIButton alloc] initWithFrame:CGRectMake(25, 360, 90, 30)];
         [savebutton setTitle:@"SAVE" forState:UIControlStateNormal];
@@ -179,7 +210,11 @@ int imgState;
         
         [dialogpop addSubview:cancelButton];
         [dialogpop addSubview:savebutton];
+        [dialogpop addSubview:AboutValue];
         [dialogpop addSubview:AboutText];
+        [dialogpop addSubview:Merchant];
+        [dialogpop addSubview:MerchantDetails];
+        [dialogpop addSubview:About];
         [dialogpop addSubview:imgView];
         
         imgState = 0;

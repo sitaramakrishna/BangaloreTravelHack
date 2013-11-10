@@ -360,3 +360,9 @@ h4 {
 .stores .merchant.paid {
     background-color: lemonchiffon;
 }
+
+.merchantpic {
+    width: 100px;
+    padding: 0 5px;
+    float: left;
+}
