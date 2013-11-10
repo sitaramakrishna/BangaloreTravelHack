@@ -36,6 +36,8 @@ const CGFloat kGHRevealSidebarFlickVelocity = 1000.0f;
 	UITapGestureRecognizer *_tapRecog;
 }
 @synthesize imgView;
+@synthesize dialogpop;
+
 int imgState;
 
 - (void)setSidebarViewController:(UIViewController *)svc {
@@ -119,6 +121,8 @@ int imgState;
 		_contentView.layer.shadowRadius = 2.5f;
 		_contentView.layer.shadowPath = [UIBezierPath bezierPathWithRect:_contentView.bounds].CGPath;
 		[self.view addSubview:_contentView];
+        
+        //dialogpop.hidden = true;
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [button addTarget:self
                    action:@selector(aMethod:)
@@ -127,25 +131,77 @@ int imgState;
         button.frame = CGRectMake(215.0, 24.0, 160.0, 40.0);
         [self.view addSubview:button];
         
+        dialogpop = [[UIView alloc] initWithFrame:CGRectMake(30, 100, 250, 400)];
+        dialogpop.backgroundColor = [UIColor colorWithRed:(230.0f/255.0f) green:(230.0f/255.0f) blue:(230.0f/255.0f) alpha:1.0f];
+        dialogpop.layer.cornerRadius = 5;
+        dialogpop.layer.masksToBounds = YES;
         
-        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 65, 320, 505)];
-        //NSString *imgFilepath = [[NSBundle mainBundle] pathForResource:@"museum" ofType:@"jpg"];
-        //UIImage *img = [[UIImage alloc] initWithContentsOfFile:imgFilepath];
-        //[imgView setImage:img];
-        [self.view addSubview:imgView];
+        
+        UILabel *dialogTitle = [[UILabel alloc] initWithFrame:CGRectMake(28, 40, 220, 20)];
+        
+        [dialogTitle setTextColor:[UIColor blackColor]];
+        //[dialogTitle setBackgroundColor:[UIColor clearColor]];
+        [dialogTitle setFont:[UIFont fontWithName: @"Trebuchet MS" size: 14.0f]];
+        
+
+        
+        UILabel *AboutText = [[UILabel alloc] initWithFrame:CGRectMake(16, 250, 220, 20)];
+        
+        [AboutText setTextColor:[UIColor blackColor]];
+        //[dialogTitle setBackgroundColor:[UIColor clearColor]];
+        [AboutText setFont:[UIFont fontWithName: @"Trebuchet MS" size: 14.0f]];
+
+        
+        UIButton *savebutton = [[UIButton alloc] initWithFrame:CGRectMake(25, 360, 90, 30)];
+        [savebutton setTitle:@"SAVE" forState:UIControlStateNormal];
+        savebutton.backgroundColor = [UIColor orangeColor];
+        savebutton.layer.cornerRadius = 5;
+        savebutton.layer.masksToBounds = YES;
+        [savebutton addTarget:self
+                   action:@selector(saveMethod:)
+         forControlEvents:UIControlEventTouchDown];
+        
+        UIButton *cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(135, 360, 90, 30)];
+        [cancelButton setTitle:@"CANCEL" forState:UIControlStateNormal];
+        cancelButton.backgroundColor = [UIColor orangeColor];
+        cancelButton.layer.cornerRadius = 5;
+        cancelButton.layer.masksToBounds = YES;
+        [cancelButton addTarget:self
+                   action:@selector(cancelMethod:)
+         forControlEvents:UIControlEventTouchDown];
+        
+        
+        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 30, 220, 200)];
+        [imgView.layer setBorderColor: [[UIColor orangeColor] CGColor]];
+        [imgView.layer setBorderWidth: 1.0];
+        [imgView.layer setCornerRadius: 5.0];
+        [imgView.layer setMasksToBounds:YES];
+        
+        [dialogpop addSubview:cancelButton];
+        [dialogpop addSubview:savebutton];
+        [dialogpop addSubview:AboutText];
+        [dialogpop addSubview:imgView];
+        
         imgState = 0;
     }
     return self;
 }
+- (void) saveMethod:(UIButton *)sender {
+    [self closeImg:nil];
+}
+
+- (void) cancelMethod:(UIButton *)sender {
+    [self closeImg:nil];
+}
 
 - (void) aMethod:(UIButton *)sender {
-    if (imgState == 0) {
+    //if (imgState == 0) {
         [self selectPhoto];
-        imgState = 1;
+    /*    imgState = 1;
     } else {
         [self closeImg:nil];
         imgState = 0;
-    }
+    }*/
 }
 
 #pragma mark Photo/Video methods
@@ -157,6 +213,7 @@ int imgState;
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     
     [self presentViewController:picker animated:YES completion:NULL];
+    [self.view addSubview:dialogpop];
     
 }
 
@@ -182,6 +239,7 @@ int imgState;
                                                 otherButtonTitles: nil];
     
     [myAlertView show];
+    self.dialogpop.hidden = true;
     self.imgView.hidden = true;
     
 }
@@ -208,6 +266,7 @@ int imgState;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         
         [self presentViewController:picker animated:YES completion:NULL];
+        [self.view addSubview:dialogpop];
         
     } else {
         [self takePhoto];

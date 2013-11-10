@@ -123,7 +123,7 @@
             self.mapsearchbar.hidden = false;
             self.tripWebView.hidden = true;
             [self loadMap];//Handle External REQ here*/
-            return NO;
+            //return NO;
         }
     }
     return YES;
