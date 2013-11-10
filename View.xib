@@ -32,7 +32,7 @@
                     </segments>
                     <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <action selector="onTypesChange:" destination="-1" eventType="touchUpInside" id="Zmj-AE-viL"/>
+                        <action selector="onTypesChange:" destination="-1" eventType="valueChanged" id="wlh-Ex-MhF"/>
                     </connections>
                 </segmentedControl>
             </subviews>

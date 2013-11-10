@@ -129,7 +129,7 @@
     return YES;
 }
 
-- loadFile:(NSString *) fileName {
+- (void) loadFile:(NSString *) fileName {
     NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentPath = ([documentPaths count] > 0) ? [documentPaths objectAtIndex:0] : nil;
     NSString *htmlPath = [documentPath stringByAppendingPathComponent:@"GHSidebarNav//"];
@@ -155,9 +155,10 @@
     BOOL isProduction = FALSE;
     if (!isProduction || ![fileManager fileExistsAtPath:dataPath]) {
         NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
-        NSString *helpPath = [bundlePath stringByAppendingPathComponent:@"GHSidebarNav"];
-        if (helpPath) {
-            [fileManager copyItemAtPath:helpPath toPath:dataPath error:NULL];
+        NSLog(@"bundle path: %@, dest path: %@", bundlePath, dataPath);
+
+        if (bundlePath) {
+            [fileManager copyItemAtPath:bundlePath toPath:dataPath error:NULL];
         }
     }
 
